@@ -24,7 +24,7 @@ function SearchInput() {
   }
 
   return (
-    <div className="SearchInput">
+    <div className="searchInput">
       <AsyncSelect
         loadOptions={loadOptions}
         getOptionLabel={(e) => `${e.Title} ${e.Year}`}
@@ -40,4 +40,4 @@ function SearchInput() {
 export default SearchInput;
  /*метод, который будет делать запрос с нашим id */
         // onChange={() => { }}
-        // onClick={(value)=>{console.log(setInputValue(value))}}
+        // onClick={(id)=>{console.log(setInputValue(id))}}
