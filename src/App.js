@@ -3,7 +3,7 @@ import './App.css';
 import MovieDetails from './MovieDetails';
 import SearchInput from './SearchInput';
 
-function App() {
+function App(detailes) {
 
   const [movie, setMovie] = useState([]);
 
@@ -17,22 +17,24 @@ function App() {
         })
     }
 
-  }, [])
+  }, [movie]);
 
-  // const currentMovie = (id) => {
-  //   return fetch(`https://www.omdbapi.com/?i=${id}&apiKey=656f5a25`)
-  //     .then((result) => result.json())
-  //     .then((result) => console.log(result))
-  // }
-  // console.log(currentMovie('tt0399295'))
+
 
 
   return (
     <div className='app'>
-      <SearchInput />
-      {movie.map(movie => {
-        <MovieDetails key={movie.detailes.imdbID} detailes={movie.detailes} />
-      })}
+      <SearchInput
+        onChange={(event) => setMovie(event.target.value)}
+        onClick={()=>{console.log(movie)}}
+      />
+
+      <MovieDetails
+        key={detailes.imdbID}
+        detailes={detailes}
+
+      />
+
     </div>
   );
 }

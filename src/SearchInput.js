@@ -29,9 +29,8 @@ function SearchInput() {
         loadOptions={loadOptions}
         getOptionLabel={(e) => `${e.Title} ${e.Year}`}
         getOptionValue={(e) => e.imbdID}
-        onInputChange={handleInputChange}
         inputValue={inputValue}
-       
+        onInputChange={handleInputChange}
         isClearable
       />
     </div>
