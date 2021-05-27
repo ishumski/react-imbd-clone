@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import AsyncSelect from 'react-select/async';
 
-function SearchInput() {
+function SearchInput({ onChange }) {
 
   const [inputValue, setInputValue] = useState('');
 
@@ -15,7 +15,7 @@ function SearchInput() {
       `https://www.omdbapi.com/?s=${inputValue}&apikey=656f5a25&page=1`
     )
       .then((res) => res.json())
-      .then((res) => console.log(res.Search));
+      .then((res) => res.Search);
   };
 
   const handleInputChange = (value) => {
@@ -31,6 +31,8 @@ function SearchInput() {
         getOptionValue={(e) => e.imbdID}
         inputValue={inputValue}
         onInputChange={handleInputChange}
+        onChange={onChange}
+        // closeMenuOnSelect={false}
         isClearable
       />
     </div>

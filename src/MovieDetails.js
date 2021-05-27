@@ -3,7 +3,7 @@ import React from 'react'
 function MovieDetails({ detailes }) {
   return (
     <div className="movieDetailes" >
-      <img src={detailes.Poster} />
+      <img src={detailes.Poster} alt='' />
       <h1>{detailes.Title}({detailes.Year})</h1>
       <span>Director:</span><span>{detailes.Director}</span>
       <span>Actors:</span><span>{detailes.Actors}</span>

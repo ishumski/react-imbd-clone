@@ -1,39 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import MovieDetails from './MovieDetails';
 import SearchInput from './SearchInput';
+import useRequest from './useRequest';
 
-function App(detailes) {
+function App() {
+  const [{ data: movie, isloading, isError }, doFetch] = useRequest('');
 
-  const [movie, setMovie] = useState([]);
+  const handleMovieChange = async (movie) => {
 
-  useEffect(() => {
-    const currMovie = (id) => {
-      fetch(`https://www.omdbapi.com/?i=${id}&apiKey=656f5a25`)
-        .then(result => result.json())
-        .then(data => {
-          console.log(data.result);
-          setMovie(data.result);
-        })
+    if (!movie) {
+      return;
     }
 
-  }, [movie]);
-
-
-
-
+    const { imdbID } = movie;
+    doFetch(`https://www.omdbapi.com/?i=${imdbID}&apiKey=656f5a25`);
+  };
   return (
     <div className='app'>
       <SearchInput
-        onChange={(event) => setMovie(event.target.value)}
-        onClick={()=>{console.log(movie)}}
+        onChange={handleMovieChange}
       />
 
-      <MovieDetails
-        key={detailes.imdbID}
-        detailes={detailes}
+      {movie && <MovieDetails detailes={movie} />}
 
-      />
+      {isloading && 'Loading...'}
+      {isError && 'Something went wrong'}
 
     </div>
   );
